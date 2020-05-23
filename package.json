@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/germancruzmoreno/loopbackImageJarabe.git"
+    "url": "git+https://github.com/germancruzmoreno/jarabe-loopback-image.git"
   },
   "keywords": [
     "loopback 3",
@@ -23,7 +23,7 @@
   "author": "German cruz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/germancruzmoreno/loopbackImageJarabe/issues"
+    "url": "https://github.com/germancruzmoreno/jarabe-loopback-image/issues"
   },
-  "homepage": "https://github.com/germancruzmoreno/loopbackImageJarabe#readme"
+  "homepage": "https://github.com/germancruzmoreno/jarabe-loopback-image#readme"
 }
