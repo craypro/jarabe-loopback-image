@@ -1,0 +1,29 @@
+{
+  "name": "loopbackimagejarabe",
+  "version": "1.0.0",
+  "description": "It only works on loopback 3, you can use it for resize and delete images in diferent sizes thumbnail, small, medium, large",
+  "main": "index.js",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "jimp": "^0.6.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/germancruzmoreno/loopbackImageJarabe.git"
+  },
+  "keywords": [
+    "loopback 3",
+    "optimize image download",
+    "resize images"
+  ],
+  "author": "German cruz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/germancruzmoreno/loopbackImageJarabe/issues"
+  },
+  "homepage": "https://github.com/germancruzmoreno/loopbackImageJarabe#readme"
+}
