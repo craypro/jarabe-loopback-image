@@ -1,6 +1,5 @@
-const Jimp = require('jimp');
 const fileSystem = require('fs');
-
+const sharp = require('sharp');
 
 const defaultSizes = [
     {name: "avatar",    x: 50},
@@ -17,6 +16,7 @@ module.exports = {
 
 async function ProcesseImageSizes(url, type, sizes = defaultSizes) {
 
+    sharp.cache(false);
     sizesSelected = sizes;
     switch (type) {
         case "resize":
@@ -95,9 +95,9 @@ async function ResizeAndSaveImages(options = {}) {
         images: [],
         imagesDestiny: [],
         widths: [],
-        width: Jimp.AUTO,
+        width: -1,
         heights: [],
-        height: Jimp.AUTO,
+        height: -1,
         quality: 90
     };
     const opt = {
@@ -107,13 +107,11 @@ async function ResizeAndSaveImages(options = {}) {
     let res = await Promise.all(
         opt.images.map(async (imgPath, index) => {
             const imgPathDestiny = opt.imagesDestiny[index] ? opt.imagesDestiny[index] : imgPath;
-            const image = await Jimp.read(imgPath);
-            await image.resize(
-                opt.widths[index] ? opt.widths[index] : opt.width,
-                opt.heights[index] ? opt.heights[index] : opt.height
-            );
-            await image.quality(opt.quality);
-            await image.writeAsync(imgPathDestiny);
+            const image = await sharp(imgPath)
+            .resize({
+                width: opt.widths[index] ? opt.widths[index] : opt.width
+            })
+            .toFile(imgPathDestiny);
         })
     );
     return res
