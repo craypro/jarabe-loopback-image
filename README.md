@@ -14,9 +14,9 @@ Asegurate de incluir
     npm i is-image
 ```
 
-En uploaded-files.js
-
 ## Usage
+
+En uploaded-files.js
 
 ```js
 'use strict';
