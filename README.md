@@ -1,13 +1,21 @@
 # loopbackImageJarabe
-Funciona en un ambiente muy especifico, cuando loopback esta guardando las imagenes con loopback-component-storage y esta en "root": "./server/storage"
+
+Funciona en un ambiente muy especifico, cuando loopback 3 esta guardando las imagenes con loopback-component-storage y esta en "root": "./server/storage"
 
 ## Install
+
 ```sh
     npm i jarabe-loopback-image
 ```
 
-<br>
+Asegurate de incluir
+
+```sh
+    npm i is-image
+```
+
 En uploaded-files.js
+
 ## Usage
 
 ```js
@@ -21,7 +29,9 @@ module.exports = function (Uploadedfiles) {
         let file = (ctx.instance) ? ctx.instance : ctx.data;
 
         if (isImage(file.URL)) {
-            jarabeImages.ProcesseImageSizes(file.URL, "resize").then((res) => {})
+            if(file.resize){
+                jarabeImages.ProcesseImageSizes(file.URL, "resize").then((res) => {})
+            }
         }
         next();
     });
@@ -36,9 +46,11 @@ module.exports = function (Uploadedfiles) {
         Uploadedfiles.findById(id, (err, file) => {
             if (!file) return next();
             if (isImage(file.URL)) {
-                jarabeImages.ProcesseImageSizes(file.URL, "delete").then((res) => {
+                if (file.resize) {
+                    jarabeImages.ProcesseImageSizes(file.URL, "delete").then((res) => {
 
-                })
+                    })
+                }
             }
             jarabeImages.DeleteFileByUrl(file.URL).then((res) => {
 
