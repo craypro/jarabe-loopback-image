@@ -75,9 +75,13 @@ async function DeleteFileByUrl(url) {
     url = PrepareUrlForServerStorage(url);
 
     let res = await new Promise(resolve => {
-        fileSystem.unlink(url, (err, info) => {
-            resolve(info)
-        })
+        try {
+            fileSystem.unlink(url, (err, info) => {
+                resolve(info)
+            })
+        } catch (error) {
+            resolve(error)
+        }
     })
 };
 
@@ -109,9 +113,12 @@ async function ResizeAndSaveImages(options = {}) {
             const imgPathDestiny = opt.imagesDestiny[index] ? opt.imagesDestiny[index] : imgPath;
             const image = await sharp(imgPath)
             .resize({
-                width: opt.widths[index] ? opt.widths[index] : opt.width
+                width: opt.widths[index] ? opt.widths[index] : opt.width,
+                fit:"contain",
             })
             .toFile(imgPathDestiny);
+            delete image;
+            delete imgPathDestiny;
         })
     );
     return res

@@ -1,6 +1,6 @@
 {
   "name": "jarabe-loopback-image",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "It only works on loopback 3, you can use it for resize and delete images in diferent sizes thumbnail, small, medium, large",
   "main": "index.js",
   "dependencies": {
